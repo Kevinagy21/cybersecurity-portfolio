@@ -1,65 +1,72 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Write-ups - Kevin's Cybersecurity Portfolio</title>
-    <link rel="stylesheet" href="css/style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Kevin Agyapong's cybersecurity lab notes, troubleshooting lessons, and planned technical write-ups.">
+<title>Write-ups | Kevin Agyapong</title>
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- Navigation Menu -->
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="blog.html">Write-ups</a></li>
-            <li><a href="about.html">About</a></li>
-        </ul>
-    </nav>
-
-    <!-- Main Content -->
-    <header>
-        <h1>CTF Write-ups & Learning Blog</h1>
-        <p>Documenting my cybersecurity journey and challenge solutions</p>
-    </header>
-
-    <section>
-        <h2>Getting Started with HackTheBox</h2>
-        <p><strong>Date:</strong> Coming Soon</p>
-        <p><strong>Category:</strong> Beginner Guide</p>
-        <p>My experience starting with HackTheBox, including setup, first machines, 
-           and lessons learned. This guide covers the basics of getting started with 
-           penetration testing practice environments.</p>
-        <p><strong>Topics Covered:</strong> Platform setup, enumeration basics, common tools</p>
-    </section>
-
-    <section>
-        <h2>TryHackMe: Network Security Fundamentals</h2>
-        <p><strong>Date:</strong> Coming Soon</p>
-        <p><strong>Category:</strong> Network Security</p>
-        <p>A walkthrough of the Network Security room on TryHackMe, covering network 
-           scanning, service enumeration, and basic vulnerability identification.</p>
-        <p><strong>Topics Covered:</strong> Nmap, service detection, security assessment</p>
-    </section>
-
-    <section>
-        <h2>Understanding Common Web Vulnerabilities</h2>
-        <p><strong>Date:</strong> Coming Soon</p>
-        <p><strong>Category:</strong> Web Security</p>
-        <p>An exploration of OWASP Top 10 vulnerabilities with practical examples 
-           and mitigation strategies. Learn how to identify and fix common security issues.</p>
-        <p><strong>Topics Covered:</strong> SQL Injection, XSS, CSRF, Authentication flaws</p>
-    </section>
-
-    <section style="background-color: #f0f7ff; border-left: 4px solid #667eea;">
-        <h2>📝 More Write-ups Coming Soon!</h2>
-        <p>I'm actively working through CTF challenges and will be posting detailed 
-           write-ups of my solutions, methodologies, and lessons learned. Check back 
-           regularly for updates!</p>
-    </section>
-
-    <footer>
-        <p>&copy; 2024 Kevin. All rights reserved.</p>
-    </footer>
+<nav class="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="index.html"><span class="brand-icon">KA<span class="brand-dot">.</span></span><span>KEVIN AGYAPONG</span></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="projects.html">Projects</a>
+      <a class="active" aria-current="page" href="blog.html">Write-ups</a>
+      <a href="about.html">About</a>
+      <a class="nav-cta" href="mailto:kevinhare61@gmail.com">Contact ↗</a>
+    </div>
+  </div>
+</nav>
+<main>
+  <header class="container page-header">
+    <p class="overline">DOCUMENT THE PROCESS</p>
+    <h1>Lab notes &amp; <span class="gradient-text">write-ups.</span></h1>
+    <p class="hero-copy">A place for the commands, screenshots, troubleshooting steps, and lessons behind my hands-on security projects. The topics below are upcoming documentation, not published technical articles yet.</p>
+  </header>
+  <section class="container section-space" aria-label="Upcoming write-ups">
+    <div class="section-heading">
+      <div>
+        <p class="overline">UPCOMING DOCUMENTATION</p>
+        <h2>Behind the build<span class="accent">.</span></h2>
+        <p class="muted">My goal is to show both what worked and what broke, with clear evidence and repeatable steps.</p>
+      </div>
+    </div>
+    <div class="cards">
+      <article class="project-card">
+        <div class="card-head"><span class="project-symbol" aria-hidden="true">◉</span><span class="status progress">IN PROGRESS</span></div>
+        <h3>Building a Wazuh SOC Lab</h3>
+        <p>Notes to capture: Ubuntu VM setup, Wazuh installation, service checks, the first monitored endpoint, and sample alert investigations.</p>
+        <div class="tags"><span>SIEM</span><span>Ubuntu</span><span>Wazuh</span></div>
+        <a href="projects.html#soc">View lab overview ↗</a>
+      </article>
+      <article class="project-card">
+        <div class="card-head"><span class="project-symbol" aria-hidden="true">▣</span><span class="status">PLANNED WRITE-UP</span></div>
+        <h3>Hardening a Debian VM</h3>
+        <p>Notes to capture: service baselines, secure SSH configuration, auditd, fail2ban, verification commands, and fixes to issues encountered.</p>
+        <div class="tags"><span>Linux</span><span>SSH</span><span>auditd</span></div>
+        <a href="projects.html#linux">View lab overview ↗</a>
+      </article>
+      <article class="project-card">
+        <div class="card-head"><span class="project-symbol" aria-hidden="true">⌘</span><span class="status">PLANNED WRITE-UP</span></div>
+        <h3>Troubleshooting Cisco VLANs</h3>
+        <p>Notes to capture: the topology, VLAN and trunk configuration, routing checks, failed pings, and the commands used to isolate problems.</p>
+        <div class="tags"><span>Cisco IOS</span><span>VLAN</span><span>Packet Tracer</span></div>
+        <a href="projects.html#network">View lab overview ↗</a>
+      </article>
+    </div>
+  </section>
+  <section class="container cta">
+    <p class="overline">FOLLOW THE JOURNEY</p>
+    <h2>Evidence over buzzwords.</h2>
+    <p>As I finish and verify each lab, I’ll add sanitized screenshots, configuration details, outcomes, and lessons learned.</p>
+    <a class="btn primary" href="https://github.com/Kevinagy21" target="_blank" rel="noopener noreferrer">Browse GitHub ↗</a>
+  </section>
+</main>
+<footer>
+  <div class="container footer-inner"><span>© 2026 Kevin Agyapong</span><span>Learn. Build. Document. Improve.</span><a href="https://github.com/Kevinagy21" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div>
+</footer>
 </body>
 </html>
