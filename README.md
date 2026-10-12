@@ -6,6 +6,7 @@ A responsive portfolio website showcasing cybersecurity education, certification
 
 - [Home](index.html) — overview, skills, certifications, and featured labs
 - [Projects](projects.html) — lab descriptions and current statuses
+- [Write-ups](blog.html) — upcoming documentation topics (not published articles)
 - [About](about.html) — background and professional interests
 
 ## Current labs
@@ -14,9 +15,17 @@ A responsive portfolio website showcasing cybersecurity education, certification
 - **Debian Linux Security** — service configuration, SSH, auditd, fail2ban (lab practice)
 - **Cisco Packet Tracer Networking** — VLANs, trunks, inter-VLAN routing (lab practice)
 
-## Documenting new projects
+## How I'll document each lab
 
-For each project, include its objective, architecture or network diagram, configuration commands, before/after screenshots, validation, and lessons learned. Never upload passwords, private IP-to-identity mappings, tokens, or personal/operational information.
+1. Explain the goal and describe the environment (VMs, OS, topology).
+2. Capture a **before** screenshot showing the issue, baseline, or intended configuration.
+3. Document the steps and commands used to investigate or configure the system.
+4. Capture an **after** screenshot proving that the change worked (service status, log event, passing test, etc.).
+5. Summarize what changed, how it was validated, and what I learned.
+
+**Before uploading screenshots:** blur or crop personal information, passwords, tokens, public IP addresses when identifying, and any military or operational data. Don't upload secrets or clearance-related details.
+
+Only label a project complete when its steps and results have been verified. Link a dedicated repository or write-up when it is actually ready.
 
 ## Running locally
 
