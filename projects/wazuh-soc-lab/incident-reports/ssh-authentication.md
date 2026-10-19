@@ -1,7 +1,7 @@
 # LAB-SSH-001 — Controlled SSH Authentication Failure
 
 **Date:** October 11, 2026  
-**Endpoint:** \`kali-soc-agent\` · **Tools:** Wazuh 4.14.8, OpenSSH, journald  
+**Endpoint:** `kali-soc-agent` · **Tools:** Wazuh 4.14.8, OpenSSH, journald  
 **Disposition:** Authorized training test; detection confirmed, no compromise demonstrated
 
 ## Objective
@@ -10,30 +10,30 @@ Test whether a failed SSH login to the Kali VM was recorded locally and detected
 
 ## Procedure
 
-1. Confirmed that SSH was active: \`systemctl is-active ssh\`.
-2. Investigated the missing \`/var/log/auth.log\` and confirmed that \`journalctl\` showed service events.
-3. Verified Wazuh's \`journald\` collection block in \`/var/ossec/etc/ossec.conf\`.
+1. Confirmed that SSH was active: `systemctl is-active ssh`.
+2. Investigated the missing `/var/log/auth.log` and confirmed that `journalctl` showed service events.
+3. Verified Wazuh's `journald` collection block in `/var/ossec/etc/ossec.conf`.
 4. Attempted a local SSH password login, intentionally entering one incorrect password:
 
-\`\`\`bash
+```bash
 ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no -o NumberOfPasswordPrompts=1 kev@127.0.0.1
-\`\`\`
+```
 
-5. Checked \`journalctl\` and found \`Failed password for kev from 127.0.0.1\`.
+5. Checked `journalctl` and found `Failed password for kev from 127.0.0.1`.
 6. Opened **Wazuh → Threat Hunting → Events** and investigated the matching event.
 
 ## Observed alert
 
 | Field | Value |
 |---|---|
-| Agent | \`kali-soc-agent\` |
-| Source IP | \`127.0.0.1\` (loopback) |
-| Target user | \`kev\` |
-| Log collection | \`journald\` |
-| Decoder | \`sshd\` |
+| Agent | `kali-soc-agent` |
+| Source IP | `127.0.0.1` (loopback) |
+| Target user | `kev` |
+| Log collection | `journald` |
+| Decoder | `sshd` |
 | Wazuh rule | **5760** |
 | Severity | **Level 5** |
-| Rule description | \`sshd: authentication failed.\` |
+| Rule description | `sshd: authentication failed.` |
 | ATT&CK mappings | **T1110.001** (Password Guessing), **T1021.004** (SSH) |
 
 The interface showed **three related authentication-failure records**, not evidence of three separate adversaries or successful intrusions.
