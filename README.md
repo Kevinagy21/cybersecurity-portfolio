@@ -11,7 +11,7 @@ A responsive portfolio website showcasing cybersecurity education, certification
 
 ## Current labs
 
-- **SOC Monitoring Lab** — Ubuntu Server + Wazuh (in progress)
+- **Wazuh SOC Monitoring Lab** — Ubuntu Server + Kali Linux; SSH detection and real-time FIM tests complete. [Read documentation](projects/wazuh-soc-lab/README.md)
 - **Debian Linux Security** — service configuration, SSH, auditd, fail2ban (lab practice)
 - **Cisco Packet Tracer Networking** — VLANs, trunks, inter-VLAN routing (lab practice)
 
