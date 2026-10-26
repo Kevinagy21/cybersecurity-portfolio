@@ -1,36 +1,62 @@
-# Kevin Agyapong — Cybersecurity Portfolio
+# Kevin Agyapong | Cybersecurity Portfolio
 
-A responsive portfolio website showcasing cybersecurity education, certifications, Army National Guard signal experience, and hands-on lab projects.
+**Penn State cybersecurity student · Army National Guard 25U · CompTIA Security+ · CompTIA Network+**
 
-## Explore
+I build hands-on labs in security monitoring, Linux, Windows, and networking, and document the results. I'm interested in entry-level **SOC analyst, cybersecurity analyst, IT support, and network operations** roles around York and Harrisburg, Pennsylvania.
 
-- [Home](index.html) — overview, skills, certifications, and featured labs
-- [Projects](projects.html) — lab descriptions and current statuses
-- [Write-ups](blog.html) — upcoming documentation topics (not published articles)
-- [About](about.html) — background and professional interests
+**[Portfolio website](https://kevinagy21.github.io/cybersecurity-portfolio/)** · **[Projects](projects.html)** · **[GitHub profile](https://github.com/Kevinagy21)**
 
-## Current labs
+## Project dashboard
 
-- **Wazuh SOC Monitoring Lab** — Ubuntu Server + Kali Linux; SSH detection and real-time FIM tests complete. [Read documentation](projects/wazuh-soc-lab/README.md)
-- **Debian Linux Security** — service configuration, SSH, auditd, fail2ban (lab practice)
-- **Cisco Packet Tracer Networking** — VLANs, trunks, inter-VLAN routing (lab practice)
+| Project | Status | View |
+| --- | --- | --- |
+| Wazuh SOC Monitoring Lab | ✅ Completed lab exercises | [Read lab and incident reports](projects/wazuh-soc-lab/README.md) |
+| Debian Linux Security Lab | 🚧 In progress / lab practice | [Overview](projects.html#linux) |
+| Cisco Packet Tracer Networking | 🚧 In progress / lab practice | [Overview](projects.html#network) |
+| Windows Security Monitoring & Incident Investigation | 📋 Up next | [Projects page](projects.html) |
 
-## How I'll document each lab
+**In progress does not mean failed or abandoned.** It means I'm still building, testing, or preparing documentation. Completed labels refer to verified lab exercises, not enterprise deployments.
 
-1. Explain the goal and describe the environment (VMs, OS, topology).
-2. Capture a **before** screenshot showing the issue, baseline, or intended configuration.
-3. Document the steps and commands used to investigate or configure the system.
-4. Capture an **after** screenshot proving that the change worked (service status, log event, passing test, etc.).
-5. Summarize what changed, how it was validated, and what I learned.
+## Featured project — Wazuh SOC Monitoring Lab
 
-**Before uploading screenshots:** blur or crop personal information, passwords, tokens, public IP addresses when identifying, and any military or operational data. Don't upload secrets or clearance-related details.
+I set up Wazuh on Ubuntu Server with a monitored Kali Linux endpoint and tested detection in a controlled lab.
 
-Only label a project complete when its steps and results have been verified. Link a dedicated repository or write-up when it is actually ready.
+- Reviewed SSH authentication failure alerts.
+- Verified real-time file integrity monitoring and recorded the observed file-change events.
+- Created incident-style write-ups explaining the tests and results.
 
-## Running locally
+**Evidence:** [Lab setup and findings](projects/wazuh-soc-lab/README.md) · [SSH authentication report](projects/wazuh-soc-lab/incident-reports/ssh-authentication.md) · [File integrity report](projects/wazuh-soc-lab/incident-reports/file-integrity-monitoring.md)
 
-Open `index.html` in a browser. This is a static HTML/CSS site suitable for GitHub Pages.
+## Technical toolkit
 
-## Credentials
+- **Security:** Wazuh, SIEM fundamentals, log analysis, file integrity monitoring, Linux hardening
+- **Networking:** TCP/IP, VLANs, trunks, inter-VLAN routing, Cisco Packet Tracer
+- **Systems:** Linux, Windows, virtual machines, SSH, basic server administration
+- **Programming:** Python, Java, HTML/CSS fundamentals
 
-CompTIA Security+ and CompTIA Network+ are completed; Cisco CCNA is being studied. Project status labels identify work in progress rather than implying completion.
+## Certifications & background
+
+- **CompTIA Security+** — earned
+- **CompTIA Network+** — earned
+- **Cisco CCNA** — studying; not yet certified
+- **Penn State** — cybersecurity studies
+- **Army National Guard** — Signal Support Systems Specialist (25U)
+
+## How I document work
+
+Each finished project should include the objective, lab setup, steps and tools, results, verification, troubleshooting, and lessons learned. Sensitive information, credentials, and military operational data must never be published.
+
+## Explore this website
+
+- [Home](index.html)
+- [All projects](projects.html)
+- [Write-ups](blog.html)
+- [About](about.html)
+
+This is a static HTML/CSS website. To view locally, open `index.html` in a browser.
+
+## Contact
+
+[Email](mailto:kevinhare61@gmail.com) · [GitHub](https://github.com/Kevinagy21)
+
+*Learn. Build. Validate. Document.*
