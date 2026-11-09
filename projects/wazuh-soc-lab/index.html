@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Wazuh SOC Monitoring Lab | Kevin Agyapong</title>
+<meta name="description" content="Wazuh SOC monitoring lab report with original SSH test evidence and investigation findings.">
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f5f6f8;color:#202936;font-family:Arial,Helvetica,sans-serif;line-height:1.65}
+header{background:#fff;border-bottom:1px solid #e0e5ec;padding:14px 20px}header nav{max-width:850px;margin:auto;display:flex;gap:24px;align-items:center;flex-wrap:wrap}header a{color:#17609a;text-decoration:none;font-size:14px}header strong{margin-right:auto}
+main{max-width:880px;margin:28px auto 60px;padding:45px 56px;background:white;box-shadow:0 2px 15px #152d4512;border:1px solid #e4e9ef}
+h1{font-size:31px;line-height:1.25;margin:8px 0 8px;color:#152c43}h2{font-size:20px;margin:35px 0 12px;padding-bottom:6px;border-bottom:1px solid #dce4ed;color:#183c5b}h3{font-size:16px;margin:24px 0 8px}p,li,td{font-size:15px}ul{padding-left:23px}a{color:#12649b}figure{margin:24px 0 32px}figure img{display:block;width:100%;height:auto;border:1px solid #dbe2e9;border-radius:4px}figcaption{font-size:13px;color:#566577;margin-top:9px}.eyebrow{color:#4a6a87;font-size:12px;letter-spacing:1px;text-transform:uppercase;font-weight:bold}.summary{color:#4a5a69;font-size:15px}.meta{font-size:13px;color:#5d6874;margin:8px 0 24px}.note{border-left:3px solid #6c8fb0;background:#f5f8fb;padding:12px 16px;font-size:14px}.facts{width:100%;border-collapse:collapse}td,th{border:1px solid #dfe6ec;padding:9px 12px;text-align:left;font-size:14px}th{background:#eef3f7}.footer{font-size:13px;color:#637182;border-top:1px solid #ddd;margin-top:40px;padding-top:16px}
+@media(max-width:650px){main{margin:0;padding:25px 18px;border:0;box-shadow:none}h1{font-size:26px}}
+</style></head>
+<body><header><nav><strong>KEVIN AGYAPONG</strong><a href="../../index.html">Home</a><a href="../../projects.html">All projects</a><a href="https://github.com/Kevinagy21/cybersecurity-portfolio/tree/main/projects/wazuh-soc-lab">GitHub source</a></nav></header>
+<main>
+<div class="eyebrow">Cybersecurity portfolio · Project report</div>
+<h1>Wazuh SOC Monitoring &amp; Threat Detection Lab</h1>
+<p class="summary">A hands-on investigation into Linux security monitoring, failed SSH logins, repeated password attempts and file integrity events.</p>
+<div class="meta">Core lab: October 2026 &nbsp;·&nbsp; Follow-up testing: November 9, 2026 &nbsp;·&nbsp; Environment: VMware Fusion, Ubuntu Server, Kali Linux, Wazuh 4.14.8</div>
+<h2>1. Project overview</h2>
+<p>I built a two-VM monitoring lab to practice how a security analyst collects and investigates endpoint alerts. The Ubuntu Server VM hosted the Wazuh manager and dashboard. A Kali Linux VM ran the Wazuh agent (<code>kali-soc-agent</code>) and provided SSH logs for analysis.</p>
+<p>My initial tests confirmed that a deliberately incorrect SSH password appeared in Wazuh and that changes to a monitored test file produced file integrity events. I then ran additional controlled SSH tests to verify detection beyond a single failed login.</p>
+<h2>2. What I tested</h2>
+<ul>
+<li><strong>Initial SSH test:</strong> entered an incorrect password and found the corresponding authentication failure in the local journal and Wazuh.</li>
+<li><strong>Repeated SSH test:</strong> ran twelve deliberately wrong password candidates against the Kali VM's own loopback SSH service using Hydra. Hydra reported zero valid passwords.</li>
+<li><strong>Log comparison:</strong> reviewed <code>journalctl -u ssh</code> and compared the failed-password messages with Wazuh Threat Hunting events.</li>
+<li><strong>File integrity monitoring:</strong> modified a designated lab test file and confirmed a file-change event with changed hashes.</li>
+</ul>
+<h2>3. Results</h2>
+<table class="facts"><tr><th>Observation</th><th>Evidence</th></tr>
+<tr><td>Monitored endpoint</td><td><code>kali-soc-agent</code></td></tr>
+<tr><td>SSH failure detection</td><td>Rule 5760, level 5</td></tr>
+<tr><td>Repeated attempt detection</td><td>Rule 5763, level 10 (brute-force behavior)</td></tr>
+<tr><td>Filtered event count</td><td>12 Wazuh hits in the November 9 view</td></tr>
+<tr><td>Test outcome</td><td>No valid password found; no successful compromise demonstrated</td></tr></table>
+<p>The second test helped confirm that the same lab setup could detect repeated failures and produce a higher-severity brute-force alert, rather than only reporting an individual bad password.</p>
+<h2>4. Screenshot evidence</h2>
+<p>These are my original lab screenshots, cropped only to exclude unrelated browser tabs and desktop areas. The terminal text, log messages, Wazuh rules and alert values have not been recreated.</p>
+<figure><img src="screenshots/ssh-test-terminal.webp" alt="Original Kali terminal output showing Hydra's failed login test and SSH journal failed-password entries" loading="lazy"><figcaption><strong>Figure 1 — Kali SSH testing and journal.</strong> The controlled password attempts ended with zero valid passwords; the local SSH journal records failed authentication activity.</figcaption></figure>
+<figure><img src="screenshots/wazuh-alert-details.webp" alt="Original Wazuh alert document details with SSH decoder, agent name and brute-force rule description" loading="lazy"><figcaption><strong>Figure 2 — Wazuh event details.</strong> The alert identifies the SSH decoder, the monitored Kali agent, the local source address and the brute-force detection description.</figcaption></figure>
+<figure><img src="screenshots/wazuh-detection-summary.webp" alt="Original Wazuh Threat Hunting dashboard showing twelve matching hits and level five and level ten rules" loading="lazy"><figcaption><strong>Figure 3 — Threat Hunting results.</strong> The filtered dashboard shows 12 hits, including rule 5760 authentication failures and a rule 5763 level-10 brute-force event.</figcaption></figure>
+<h2>5. What I learned</h2>
+<p>I learned how to move from an alert to its supporting source log, check that event details match, and distinguish one failed login from repeated authentication attempts. I also practiced documenting the outcome without overstating what happened: these were deliberately generated lab events, not evidence of an external attacker.</p>
+<p class="note"><strong>Scope:</strong> All password tests targeted my own Kali VM using <code>127.0.0.1</code>. No valid credentials were found, and the observed activity does not establish a successful intrusion.</p>
+<h2>6. Related documentation</h2>
+<p><a href="README.md">Detailed lab notes</a> · <a href="incident-reports/ssh-authentication.md">SSH investigation report</a> · <a href="incident-reports/file-integrity-monitoring.md">File integrity investigation</a></p>
+<div class="footer">Kevin Agyapong · Cybersecurity portfolio · Authorized home-lab validation</div>
+</main></body></html>
